@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohw Wlcm Miss Dishaa jii!!.👀</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles for a premium, clean aesthetic */
+        :root {
+            --primary-color: #ffd700; /* Golden Yellow for premium look */
+            --text-color: #ffffff;
+            --blur-color: rgba(66, 134, 244, 0.3); /* Aesthetic blue tint */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Full-screen video background setup */
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+        }
+
+        /* Blue Blurry Overlay (The Aesthetic Look) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--blur-color);
+            backdrop-filter: blur(6px); /* The 'blurry' effect */
+            z-index: -1;
+        }
+
+        /* Content Container */
+        .content {
+            z-index: 1;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fancy Title Style */
+        .fancy-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5em;
+            margin-bottom: 30px;
+            color: var(--text-color);
+            text-shadow: 0 0 15px var(--primary-color), 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        /* The Premium Button */
+        .premium-button {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 25px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.7);
+        }
+
+        .premium-button:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 1);
+        }
+
+        /* Small text below the button */
+        .special-day-text {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- WRAPPER/FADE CSS --- */
+        .page-wrapper {
+            transition: opacity 0.5s ease-in-out; /* 0.5 सेकंड का स्मूथ ट्रांजिशन */
+            opacity: 1;
+        }
+        .page-wrapper.fade-out {
+            opacity: 0;
+        }
+        /* ------------------------ */
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper"> <video autoplay muted loop id="video-background">
+            <source src="videos\b46e4b50f46138965c9c5c0df6c77ada.mp4" type="video/mp4">
+        </video>
+
+        <div class="overlay"></div>
+
+        <div class="content">
+            <h1 class="fancy-title">Ohw Wlcm Dshaa Jii!!👀</h1>
+
+            <a href="#" onclick="pageTransition('page2.html')" class="premium-button">
+
+                Toh yaha click kijiye 🎀 Miss
+            </a>
+
+            <p class="special-day-text">
+                So stay happpiest & happy birthdayy 🩷🫶😭
+            </p>
+            
+            <div style="font-size: 2.5em; margin-top: 20px;">
+                 🐈‍⬛ Billootiyaaa 🎀
+            </div>
+        </div>
+    </div> <script>
+        function navigatePage(url) {
+            const wrapper = document.querySelector('.page-wrapper');
+            wrapper.classList.add('fade-out'); // पेज को fade-out करें
+            setTimeout(() => {
+                window.location.href = url; // 500ms के बाद पेज बदलें
+            }, 500); 
+        }
+    </script>
+    <!-- 💫 Page Transition Effect (Paper Fold Style) -->
+<div id="transition-overlay"></div>
+
+<style>
+/* Paper-fold / crumple transition */
+#transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #fff 0%, #e0e0e0 80%);
+  background-image: url('https://www.transparenttextures.com/patterns/wrinkled-paper.png');
+  background-size: cover;
+  transform-origin: center;
+  transform: scale(0) rotate(0deg);
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transition:
+    transform 0.8s cubic-bezier(0.7, 0.01, 0.3, 1),
+    opacity 0.8s ease;
+}
+
+#transition-overlay.active {
+  transform: scale(2) rotate(10deg);
+  opacity: 1;
+}
+</style>
+
+<script>
+function pageTransition(url) {
+  const overlay = document.getElementById('transition-overlay');
+  overlay.classList.add('active');
+  setTimeout(() => { window.location.href = url; }, 800);
+}
+</script>
+
+
+</body>
+</html>
+<a href="page2.html</a>
