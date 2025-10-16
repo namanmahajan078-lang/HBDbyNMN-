@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disha's Special Album</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffd700;
+            --text-color: #1a1a1a;
+            --bg-color: #fff8f0; /* Soft, aesthetic background */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .title-fancy {
+            font-family: 'Amatic SC', cursive;
+            font-size: 4.5em;
+            color: #e91e63; /* Pink/Rose Gold */
+            margin-top: 30px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.15);
+        }
+
+        /* Photo Album Grid (Random, Hanging style) */
+        .photo-grid {
+            position: relative;
+            height: 900px;
+            margin: 50px 0;
+        }
+
+        .photo-card {
+            position: absolute;
+            width: 220px;
+            background: white;
+            padding: 15px 15px 10px 15px;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+            transition: transform 0.4s;
+            border: 3px solid #ffc0cb; /* Pink border */
+            transform-origin: top center;
+        }
+        
+        /* Random positions and rotations for aesthetic look */
+        .photo-card:nth-child(1) { top: 70px; left: 10%; transform: rotate(-8deg); }
+        .photo-card:nth-child(2) { top: 300px; right: 10%; transform: rotate(12deg); }
+        .photo-card:nth-child(3) { top: 500px; left: 25%; transform: rotate(-5deg); }
+        .photo-card:nth-child(4) { top: 750px; left: 5%; transform: rotate(20deg); }
+        .photo-card:nth-child(5) { top: 150px; right: 25%; transform: rotate(3deg); } /* Moon Image position */
+
+        .photo-card:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 10;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* Countdown Button Style */
+        .countdown-button {
+            background-color: var(--primary-color);
+            color: #1a1a1a;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 50px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
+            pointer-events: none; 
+            opacity: 0.7;
+        }
+
+        .countdown-button.active {
+            pointer-events: auto;
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 40px rgba(255, 215, 0, 0.5);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="title-fancy">Prettiest Day evrr 😩🫶🩷</h1>
+        
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="images\phase-26.webp" alt="Memory 1">
+                <p class="description">the second moon on that day!🌙🎀</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="images\download.jfif" alt="Memory 2">
+                <p class="description">Nd One of the  beutyy of hartley on that day!😭🫶</p>
+            </div>
+            
+            <div class="photo-card">
+                <img src="images\images.jfif" alt="Memory 3">
+                <p class="description"> The Beutyy Of Our solarrrr😣🥹</p>
+            </div>
+            
+            
+            <div class="photo-card">
+                <img src="images\b630e2dd4a3a8414306c854f03ae9a33.jpg" alt="👀">
+                <p class="description">The Night Sky On that Day👀bt still not prettier than uhhh!🥰</p>
+            </div>
+
+            <div class="photo-card">
+                <img src="images\8dcd4b8ad81a016f2f005bcf0cebc021.jpg" alt="The Pretiest Sunset evr🥺🫶">
+                <p class="description">The Beuty Of sunset On That day (A favorite!)</p>
+            </div>
+
+            </div>
+
+            <a id="countdownBtn" href="page3.html"onclick="pageTransition('page3.html')" class="countdown-button"></a>
+            Loading...
+        </a>
+    </div>
+         // Before redirect, store a flag that user clicked the button
+         const musicBtn = document.getElementById("countdownBtn");
+         musicBtn.addEventListener("click", () => {
+         localStorage.setItem("playMusic", "true");
+         });
+
+    <script>
+        const btn = document.getElementById('countdownBtn');
+        let count = 10;
+        
+        function updateCountdown() {
+            if (count > 0) {
+                btn.innerHTML = `Waittttt Vhi dekh tere photo toh diye ni tune ${count}😒💌 `;
+                count--;
+            } else {
+                clearInterval(countdownInterval);
+                btn.innerHTML = 'Oyii direction ab kr ithhe click  🎀💟';
+                btn.classList.add('active');
+                btn.style.pointerEvents = 'auto';
+            }
+        }
+
+        // Start the countdown
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+    <!-- 💫 Page Transition Effect (Paper Fold Style) -->
+<div id="transition-overlay"></div>
+
+<style>
+/* Paper-fold / crumple transition */
+#transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #fff 0%, #e0e0e0 80%);
+  background-image: url('https://www.transparenttextures.com/patterns/wrinkled-paper.png');
+  background-size: cover;
+  transform-origin: center;
+  transform: scale(0) rotate(0deg);
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transition:
+    transform 0.8s cubic-bezier(0.7, 0.01, 0.3, 1),
+    opacity 0.8s ease;
+}
+
+#transition-overlay.active {
+  transform: scale(2) rotate(10deg);
+  opacity: 1;
+}
+</style>
+
+<script>
+function pageTransition(url) {
+  const overlay = document.getElementById('transition-overlay');
+  overlay.classList.add('active');
+  setTimeout(() => { window.location.href = url; }, 800);
+}
+</script>
+
+
+</body>
+</html>
+<a href="page3.html">page 2</a>
