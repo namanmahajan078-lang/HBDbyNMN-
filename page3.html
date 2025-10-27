@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Disha! 💖✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@900&family=Calligraffitti&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #ff69b4; /* Pink */
+            --secondary-color: #ffd700; /* Gold */
+            --tertiary-color: #8a2be2; /* Blue Violet */
+            --bg-overlay-color: rgba(0, 0, 30, 0.5); /* Darker, slightly blue overlay */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* **Swipe-up ke liye zaruri** */
+            font-family: 'Great Vibes', cursive;
+            color: white;
+        }
+
+        /* --- VIDEO BACKGROUND STYLING (Blue & Blurry) --- */
+        #video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            background-size: cover;
+            filter: hue-rotate(200deg) saturate(1.2) blur(2px) brightness(0.7); 
+        }
+
+        /* --- CONTENT WRAPPER STYLING --- */
+        #content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-overlay-color); 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            /* **SWIPE UP TRANSITION CSS** */
+            transition: transform 1.5s ease-in-out; 
+            transform: translateY(0); /* Default position */
+        }
+        
+        /* **SWIPE UP CLASS: Upar sarakne ke liye** */
+        #content-wrapper.swipe-up {
+            transform: translateY(-100vh); /* Moves the content up and out of view */
+        }
+
+        /* --- ANIMATION CONTAINER --- */
+        #animation-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 60%;
+            padding: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            box-sizing: border-box; 
+        }
+
+        /* Sliding Text Style */
+        .hbd-text {
+            position: absolute;
+            font-size: 3.5em;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 1s ease-out;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--primary-color); 
+            z-index: 5;
+        }
+        
+        /* Font styles for the rotating text */
+        .hbd-text:nth-child(3n + 1) { 
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+        } 
+        .hbd-text:nth-child(3n + 2) { 
+            font-family: 'Great Vibes', cursive;
+            color: var(--primary-color);
+        } 
+        .hbd-text:nth-child(3n) { 
+            font-family: 'Calligraffitti', cursive;
+            color: var(--tertiary-color);
+        } 
+
+        /* Bottom Genz Message */
+        #bottom-msg {
+            font-size: 2.5em;
+            font-family: 'Playfair Display', serif;
+            color: #ffffff; 
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+            z-index: 10;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.5); 
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        /* --- EMOJI SHOWER STYLING --- */
+        #emoji-shower-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear forwards;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        @keyframes fall {
+            0% { transform: translate(0, -10vh) scale(1); opacity: 1; }
+            100% { transform: translate(0, 100vh) scale(0.5); opacity: 0; } 
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="video-background">
+        <source src="videos\From KlickPin CF  [Video] _ Flower aesthetic Rose flower pictures Amazing flowers.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <audio id="bg-music" loop>
+      <source src="audio\Blue Yung Kai Instrumental Ringtone Download - MobCup.Com.Co.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="content-wrapper">
+        <div id="emoji-shower-container"></div>
+        
+        <div id="animation-container">
+        </div>
+        
+        <div id="bottom-msg">
+            🎉 Happpyy Birthdayyy!!!kaleshiii ouratt!🩷<br>HBD 🎀! and wait next or hai ek note✨
+        </div>
+    </div> 
+
+    <script>
+        // Function for automatic transition with SWIPE UP
+        function autoPageTransition(url) {
+            const contentWrapper = document.getElementById('content-wrapper');
+            // Start the SWIPE UP animation
+            contentWrapper.classList.add('swipe-up'); 
+            
+            // Wait for the transition (1.5 seconds) to complete before redirecting
+            setTimeout(() => { 
+                window.location.href = url; 
+            }, 1500); 
+        }
+
+        // --- RUNNING LOGIC AFTER DOM IS LOADED ---
+        window.addEventListener("DOMContentLoaded", () => {
+            const music = document.getElementById("bg-music");
+            const shouldPlay = localStorage.getItem("playMusic");
+            
+            // Music Play Logic
+            if (shouldPlay === "true") {
+              music.play().catch(() => {
+                console.log("Autoplay blocked, will play after first user action.");
+              });
+              localStorage.removeItem("playMusic");
+            }
+            
+            // --- AUTOMATIC TRANSITION (10 SECONDS) ---
+            setTimeout(() => {
+                autoPageTransition('page4.html'); 
+            }, 10000); // **10000 milliseconds = 10 seconds**
+            
+            // Start the animations
+            startSlidingTextAnimation();
+            startEmojiShower();
+        });
+
+        // --- SLIDING TEXT ANIMATION LOGIC ---
+        const container = document.getElementById('animation-container');
+        const phrases = [
+            "Happy Birthday 🎀🫶👀",
+            "HBD Disha! 🩷",
+            "A Very Special Day! 🌷✨",
+            "Happy Birthday 🎀",
+            "1 Nov Special! 👀",
+            "Have a fun day! 🥳",
+            "happy Birthday 🎈🎉" 
+        ];
+        
+        function createAndAnimate() {
+            if (!container) return; 
+
+            const text = document.createElement('div');
+            text.className = 'hbd-text';
+            text.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            
+            const side = Math.floor(Math.random() * 4);
+            const duration = Math.random() * 3 + 3;
+            
+            let startX, startY;
+
+            if (side === 0) { startY = '-100px'; startX = `${Math.random() * 100}%`; } 
+            else if (side === 1) { startX = '100vw'; startY = `${Math.random() * 100}%`; } 
+            else if (side === 2) { startY = '100vh'; startX = `${Math.random() * 100}%`; } 
+            else { startX = '-100px'; startY = `${Math.random() * 100}%`; }
+            
+            const endX = `${Math.random() * 80 + 10}%`;
+            const endY = `${Math.random() * 80 + 10}%`;
+            
+            text.style.left = startX;
+            text.style.top = startY;
+            text.style.transitionDuration = `${duration}s`;
+            text.style.fontSize = `${Math.random() * 2 + 2.5}em`;
+            
+            container.appendChild(text);
+
+            setTimeout(() => {
+                text.style.opacity = 1;
+                text.style.left = endX;
+                text.style.top = endY;
+                text.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 10 - 5}deg)`;
+            }, 50);
+
+            setTimeout(() => {
+                text.style.opacity = 0;
+                setTimeout(() => text.remove(), 1000); 
+            }, (duration * 1000) + 3000);
+        }
+
+        function startSlidingTextAnimation() {
+            setInterval(createAndAnimate, 400); 
+        }
+
+        // --- EMOJI SHOWER LOGIC ---
+        const emojiShowerContainer = document.getElementById('emoji-shower-container');
+        const emojiList = ["🌷", "🌹", "🌸", "💖", "✨", "🎀"];
+
+        function createEmoji() {
+            if (!emojiShowerContainer) return;
+
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+            
+            const startX = Math.random() * window.innerWidth;
+            emoji.style.left = `${startX}px`;
+
+            const fallDuration = Math.random() * 5 + 3; 
+            emoji.style.animationDuration = `${fallDuration}s`;
+
+            const delay = Math.random() * 0.5;
+            emoji.style.animationDelay = `${delay}s`;
+
+            emojiShowerContainer.appendChild(emoji);
+
+            setTimeout(() => {
+                emoji.remove();
+            }, (fallDuration + delay) * 1000);
+        }
+
+        function startEmojiShower() {
+             setInterval(createEmoji, 100);
+        }
+    </script>
+
+</body>
+</html>
